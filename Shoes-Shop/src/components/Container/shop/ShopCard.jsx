@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { BsEmojiFrown } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
 const Shop = ({ Products }) => {
+    const navigate = useNavigate();
     const [visibleCount, setVisibleCount] = useState(10);
 
     const loadMoreProducts = () => {
@@ -13,7 +15,10 @@ const Shop = ({ Products }) => {
     const hasMoreProducts = visibleCount < Products.length;
 
     const ProductCard = ({ product }) => (
-        <div className="border p-4 relative hover:shadow-lg transition-shadow duration-300 white-100 hover:cursor-pointer">
+        <div
+            onClick={() => navigate(`/product/${product.type}/${product.id}`)}
+            className="border p-4 relative hover:shadow-lg transition-shadow duration-300 white-100 hover:cursor-pointer"
+        >
             <img src={product.image} alt={product.name} className="w-full h-48 object-cover mb-4" />
             {product.sale && <span className="bg-black text-white px-2 py-1 text-xs absolute top-2 left-2">-SALE</span>}
             <h3 className="text-lg font-semibold">{product.name}</h3>

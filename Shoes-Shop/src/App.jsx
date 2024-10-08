@@ -8,6 +8,7 @@ import Data from './AllDemoData.json';
 import About from './components/Pages/About';
 import Contact from './components/Pages/Contact';
 import PageNotFound from './components/Pages/PageNotFound';
+import Product from './components/Container/Product/Product';
 
 const App = () => {
   const { FeaturedProducts, LatestProducts, ShopProducts, BestSellerProducts } = Data;
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/bestseller" element={<ShopCard Products={BestSellerProducts} />} />
         <Route path="/aboutus" element={<About />} />
         <Route path="/contactus" element={<Contact />} />
+        <Route path="/product/:type/:id" element={<Product />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
