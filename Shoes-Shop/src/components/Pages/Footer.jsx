@@ -49,21 +49,19 @@ const Footer = () => {
                 {/* Navigation Links */}
                 <div className="mb-4">
                     <nav className="flex flex-wrap justify-center space-x-2 md:space-x-4">
-                        <Link to="/" className="text-white hover:text-orange-500 transition">Home</Link>
+                        <Link to="/" onClick={() => window.scrollTo(0, 0)} className="text-white hover:text-orange-500 transition">Home</Link>
                         <span className="text-white">|</span>
-                        <Link to="/shop" className="text-white hover:text-orange-500 transition">Shop</Link>
+                        <Link to="/shop" onClick={() => window.scrollTo(0, 0)} className="text-white hover:text-orange-500 transition">Shop</Link>
                         <span className="text-white">|</span>
-                        <Link to="/blog" className="text-white hover:text-orange-500 transition">Blog</Link>
+                        <Link to="/aboutus" onClick={() => window.scrollTo(0, 0)} className="text-white hover:text-orange-500 transition">About Us</Link>
                         <span className="text-white">|</span>
-                        <Link to="/media" className="text-white hover:text-orange-500 transition">Media</Link>
-                        <span className="text-white">|</span>
-                        <Link to="/shortcode" className="text-white hover:text-orange-500 transition">ShortCode</Link>
-                        <span className="text-white">|</span>
-                        <Link to="/features" className="text-white hover:text-orange-500 transition">Features</Link>
-                        <span className="text-white">|</span>
-                        <Link to="/about-us" className="text-white hover:text-orange-500 transition">About Us</Link>
-                        <span className="text-white">|</span>
-                        <Link to="/contact-us" className="text-white hover:text-orange-500 transition">Contact Us</Link>
+                        <Link
+                            to="/contactus"
+                            onClick={() => window.scrollTo(0, 0)}
+                            className="text-white hover:text-orange-500 transition"
+                        >
+                            Contact Us
+                        </Link>
                     </nav>
                 </div>
 
@@ -74,6 +72,6 @@ const Footer = () => {
             </div>
         </footer>
     );
-}
+};
 
 export default Footer;

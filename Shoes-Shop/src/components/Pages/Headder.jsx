@@ -6,7 +6,7 @@ function Headder() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-    const navLinks = ['Home', 'Shop', 'Features', 'About Us', 'Contact Us'];
+    const navLinks = ['Home', 'Shop', "Featured", "Latest", "Best Seller", 'About Us', 'Contact Us'];
 
     return (
         <div>

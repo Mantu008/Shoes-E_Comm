@@ -1,16 +1,34 @@
-import React from 'react'
-import Home from './components/Container/Home/Home'
-import Headder from './components/Pages/Headder'
-import Footer from './components/Pages/Footer'
+import React from 'react';
+import Home from './components/Container/Home/Home';
+import Headder from './components/Pages/Headder';
+import Footer from './components/Pages/Footer';
+import { Routes, Route } from 'react-router-dom';
+import ShopCard from './components/Container/shop/ShopCard';
+import Data from './AllDemoData.json';
+import About from './components/Pages/About';
+import Contact from './components/Pages/Contact';
+import PageNotFound from './components/Pages/PageNotFound';
 
 const App = () => {
+  const { FeaturedProducts, LatestProducts, ShopProducts, BestSellerProducts } = Data;
+
   return (
     <div>
       <Headder />
-      <Home />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/shop" element={<ShopCard Products={ShopProducts} />} />
+        <Route path="/featured" element={<ShopCard Products={FeaturedProducts} />} />
+        <Route path="/latest" element={<ShopCard Products={LatestProducts} />} />
+        <Route path="/bestseller" element={<ShopCard Products={BestSellerProducts} />} />
+        <Route path="/aboutus" element={<About />} />
+        <Route path="/contactus" element={<Contact />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
