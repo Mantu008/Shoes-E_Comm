@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { BsEmojiFrown } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
-const ItemCard = ({ RecentArrivelProducts, Headding }) => {
+const ItemCard = ({ Products, Headding, category }) => {
+    const navigate = useNavigate();
     const [visibleCount, setVisibleCount] = useState(5);
-
     const loadMoreProducts = () => {
-        if (visibleCount < RecentArrivelProducts.length) {
-            setVisibleCount(prevCount => prevCount + 5);
-        }
+        setVisibleCount((prevCount) => prevCount + 5);
     };
 
-    const hasMoreProducts = visibleCount < RecentArrivelProducts.length;
+    const hasMoreProducts = visibleCount < Products.length;
 
     const ProductCard = ({ product }) => (
-        <div className="border p-4 relative hover:shadow-lg transition-shadow duration-300 bg-gray-100 hover:cursor-pointer">
+        <div
+            onClick={() => navigate(`/product/${product.type}/${product.id}`, window, scrollTo(0, 0), setVisibleCount(5))}
+            className="border p-4 relative hover:shadow-lg transition-shadow duration-300 white-100 hover:cursor-pointer"
+        >
             <img src={product.image} alt={product.name} className="w-full h-48 object-cover mb-4" />
             {product.sale && <span className="bg-black text-white px-2 py-1 text-xs absolute top-2 left-2">-SALE</span>}
             <h3 className="text-lg font-semibold">{product.name}</h3>
@@ -32,10 +34,9 @@ const ItemCard = ({ RecentArrivelProducts, Headding }) => {
     return (
         <div className="container mx-auto p-8 bg-white">
             <h1 className="text-3xl font-bold text-center mb-8">{Headding}</h1>
-
             {/* Product Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                {RecentArrivelProducts.slice(0, visibleCount).map(product => (
+                {Products.slice(0, visibleCount).map(product => (
                     <ProductCard key={product.id} product={product} />
                 ))}
             </div>
@@ -43,7 +44,9 @@ const ItemCard = ({ RecentArrivelProducts, Headding }) => {
             {/* Load More Products Button */}
             <div className="text-center mt-8">
                 {hasMoreProducts ? (
-                    <button onClick={loadMoreProducts} className="bg-orange-500 text-white px-6 py-2">Load More</button>
+                    <button onClick={loadMoreProducts} className="bg-orange-500 text-white px-6 py-2">
+                        Load More
+                    </button>
                 ) : (
                     <p className="text-black-500">
                         <span className="flex items-center justify-center font-bold">

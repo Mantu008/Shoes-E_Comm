@@ -12,7 +12,7 @@ const Home = () => {
         <div>
             <Corosol />
             <ShoesTypeCard />
-            <ItemCard RecentArrivelProducts={RecentArrivelProducts} Headding={"RECENT ARRIVAL"} />
+            <ItemCard Products={RecentArrivelProducts} Headding={"RECENT ARRIVAL"} />
             <HomeBanner />
         </div>
     )

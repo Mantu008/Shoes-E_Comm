@@ -1,10 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaSearch, FaPhoneAlt, FaUser, FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 function Headder() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [cartLength, setCartLength] = useState(0);
+
+    const updateCartLength = () => {
+        const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+        setCartLength(cartData.length);
+    };
+
+    useEffect(() => {
+        // Initialize cart length on mount
+        updateCartLength();
+
+        // Listen for custom `cartUpdated` event
+        const handleCartUpdate = () => {
+            updateCartLength();
+        };
+
+        window.addEventListener('cartUpdated', handleCartUpdate);
+
+        // Cleanup listener on unmount
+        return () => {
+            window.removeEventListener('cartUpdated', handleCartUpdate);
+        };
+    }, []);
 
     const navLinks = ['Home', 'Shop', "Featured", "Latest", "Best Seller", 'About Us', 'Contact Us'];
 
@@ -15,10 +38,12 @@ function Headder() {
                 <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center py-4 px-6 md:py-6">
                     {/* Logo */}
                     <div className="text-3xl font-bold flex items-center w-full md:w-auto mb-4 md:mb-0 tracking-wide">
-                        <span className="text-white">K</span>
-                        <span className="text-orange-500">ite</span>
-                        <span className="text-white">F</span>
-                        <span className="text-orange-500">oot</span>
+                        <Link to={"/home"}>
+                            <span className="text-white">K</span>
+                            <span className="text-orange-500">ite</span>
+                            <span className="text-white">F</span>
+                            <span className="text-orange-500">oot</span>
+                        </Link>
 
                         {/* Hamburger Menu for Mobile */}
                         <button
@@ -79,7 +104,7 @@ function Headder() {
                             </NavLink>
                             <NavLink to="/cart" className="flex items-center cursor-pointer hover:text-orange-500 transition-colors">
                                 <FaShoppingCart className="text-2xl" aria-label="Cart" />
-                                <span className="bg-orange-500 text-white rounded-full px-2 py-1 ml-1 text-sm font-semibold">0</span>
+                                <span className="bg-orange-500 text-white rounded-full px-2 py-1 ml-1 text-sm font-semibold">{cartLength}</span>
                             </NavLink>
                         </div>
                     </div>
@@ -141,7 +166,7 @@ function Headder() {
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     <FaShoppingCart className="text-2xl" aria-label="Cart" />
-                                    <span className="bg-orange-500 text-white rounded-full px-2 py-1 ml-2 text-sm font-semibold">0</span>
+                                    <span className="bg-orange-500 text-white rounded-full px-2 py-1 ml-2 text-sm font-semibold">{cartLength}</span>
                                 </NavLink>
                             </div>
                         </div>

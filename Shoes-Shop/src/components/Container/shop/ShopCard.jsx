@@ -16,7 +16,7 @@ const Shop = ({ Products }) => {
 
     const ProductCard = ({ product }) => (
         <div
-            onClick={() => navigate(`/product/${product.type}/${product.id}`)}
+            onClick={() => navigate(`/product/${product.type}/${product.id}`, window, scrollTo(0, 0))}
             className="border p-4 relative hover:shadow-lg transition-shadow duration-300 white-100 hover:cursor-pointer"
         >
             <img src={product.image} alt={product.name} className="w-full h-48 object-cover mb-4" />

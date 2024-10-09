@@ -9,6 +9,8 @@ import About from './components/Pages/About';
 import Contact from './components/Pages/Contact';
 import PageNotFound from './components/Pages/PageNotFound';
 import Product from './components/Container/Product/Product';
+import Cart from './components/Container/Cart/Cart';
+import CheckOut from './components/Container/Cart/ShippingAddress';
 
 const App = () => {
   const { FeaturedProducts, LatestProducts, ShopProducts, BestSellerProducts } = Data;
@@ -26,6 +28,7 @@ const App = () => {
         <Route path="/aboutus" element={<About />} />
         <Route path="/contactus" element={<Contact />} />
         <Route path="/product/:type/:id" element={<Product />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
